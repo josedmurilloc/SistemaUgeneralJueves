@@ -21,6 +21,7 @@ import model.Usuario;
 @SessionScoped
 public class UsuarioController extends Usuario implements Serializable {
 
+//    private boolean rolAdmin = false;false
     /**
      * Creates a new instance of UsuarioController
      */
@@ -32,6 +33,10 @@ public class UsuarioController extends Usuario implements Serializable {
         if (usuario != null) {
             this.setNombreUsuario(usuario.getNombreUsuario());
             this.setIdRol(usuario.getIdRol());
+//            if (usuario.getIdRol() == "admin") {
+//                rolAdmin = true; <!--esto en la plantilla
+//rendered="#{usuarioController.rolAdmin} property to control access -->
+//            }
             return "principal.xhtml";
 
         } else {
