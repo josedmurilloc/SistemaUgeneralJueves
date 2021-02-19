@@ -22,6 +22,9 @@ public class EstudianteGestion {
 
     private static final String SQL_GETESTUDIANTES = "SELECT * FROM estudiante";
     private static final String SQL_GETESTUDIANTE = "SELECT * FROM estudiante where id=? and idEstudiante=?";
+    private static final String SQL_INSERTESTUDIANTE = "insert into estudiante(idEstudiante,nombre,apellido1,apellido2,fechaNaci,fechaIngr,genero) values (?,?,?,?,?,?,?)";
+    private static final String SQL_UPDATEESTUDIANTE = "update  estudiante set nombre=?,apellido1=?,apellido2=?,fechaNaci=?,fechaIngr=?,genero=? where id=? and idEstudiante=?";
+    private static final String SQL_DELETEESTUDIANTE = "Delete FROM estudiante where id=? and idEstudiante=?";
 
     //Metodo encargado de traer todos los estudiantes
     public static ArrayList<Estudiante> getEstudiantes() {
@@ -77,6 +80,58 @@ public class EstudianteGestion {
 
         }
         return estudiante;
+    }
 
+    public static boolean insertEstudiante(Estudiante estudiante) {
+        try {
+            PreparedStatement sentencia = Conexion.getConexion().prepareStatement(SQL_INSERTESTUDIANTE);
+            sentencia.setString(1, estudiante.getIdEstudiante());
+            sentencia.setString(2, estudiante.getNombre());
+            sentencia.setString(3, estudiante.getApellido1());
+            sentencia.setString(4, estudiante.getApellido2());
+            sentencia.setObject(5, estudiante.getFechaNaci());
+            sentencia.setObject(6, estudiante.getFechaIngr());
+            sentencia.setString(7, "" + estudiante.getGenero());
+            return sentencia.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EstudianteGestion.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return false;
+    }
+
+    public static boolean updateEstudiante(Estudiante estudiante) {
+        try {
+
+            PreparedStatement sentencia = Conexion.getConexion().prepareCall(SQL_UPDATEESTUDIANTE);
+            sentencia.setString(1, estudiante.getNombre());
+            sentencia.setString(2, estudiante.getApellido1());
+            sentencia.setString(3, estudiante.getApellido2());
+            sentencia.setObject(4, estudiante.getFechaNaci());
+            sentencia.setObject(5, estudiante.getFechaIngr());
+            sentencia.setString(6, "" + estudiante.getGenero());
+            sentencia.setInt(7, estudiante.getId());
+            sentencia.setString(8, estudiante.getIdEstudiante());
+            return sentencia.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EstudianteGestion.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return false;
+    }
+
+    public static boolean deleteEstudiante(Estudiante estudiante) {
+        try {
+            PreparedStatement sentencia = Conexion.getConexion().prepareStatement(SQL_DELETEESTUDIANTE);
+            sentencia.setInt(1, estudiante.getId());
+            sentencia.setString(2, estudiante.getIdEstudiante());
+            return sentencia.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(EstudianteGestion.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return false;
     }
 }

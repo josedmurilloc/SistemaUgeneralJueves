@@ -33,7 +33,7 @@ public class EstudianteController extends Estudiante implements Serializable {
     }
 
     //Metodo encargado de mostrar un unico estudiante para editar
-    public String editaEstudiante(int id,String idEstudiante) {
+    public String editaEstudiante(int id, String idEstudiante) {
         Estudiante e = EstudianteGestion.getEstudiante(id, idEstudiante);
         if (e != null) {
             this.setId(e.getId());
@@ -50,6 +50,46 @@ public class EstudianteController extends Estudiante implements Serializable {
                     "Posiblemente el registro no exista");
             FacesContext.getCurrentInstance().addMessage("editaEstudianteForm:identificacion", msg);
             return "list.xhtml";
+        }
+    }
+
+    public String insertEstudiante() {
+        /*This== Estudiante*/
+        if (EstudianteGestion.insertEstudiante(this)) {
+            return "list.xhtml";
+
+        } else {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                    "Ocurrio un error al insertar el estudiante");
+            FacesContext.getCurrentInstance().addMessage("editaEstudianteForm:identificacion", msg);
+            return "edit.xhtml";
+        }
+    }
+
+    public String updateEstudiante() {
+        /*This== Estudiante*/
+        if (EstudianteGestion.updateEstudiante(this)) {
+            return "list.xhtml";
+
+        } else {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                    "Ocurrio un error al actualizar el estudiante");
+            FacesContext.getCurrentInstance().addMessage("editaEstudianteForm:identificacion", msg);
+            return "edit.xhtml";
+        }
+    }
+
+    public String deleteEstudiante() {
+        /*This== Estudiante        
+        Este metodo va a fallar con algunos estudiantes 
+        */
+        if (EstudianteGestion.deleteEstudiante(this)) {
+            return "list.xhtml";
+        } else {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                    "Ocurrio un error al eliminar el estudiante");
+            FacesContext.getCurrentInstance().addMessage("editaEstudianteForm:identificacion", msg);
+            return "edit.xhtml";
         }
     }
 
