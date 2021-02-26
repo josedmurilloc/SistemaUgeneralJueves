@@ -24,9 +24,23 @@
                         <b:image library="images" name="Logo.png" style="height: 75px;"/>
                     </b:navbarLinks>
                     <b:navbarLinks>
-
                         <b:dropMenu value="Estudiantes" icon-awesome="fa-group" >
                             <b:navLink value="Gestion" icon-awesome="fa-newspaper-o" href="#{request.contextPath}/faces/estudiante/list.xhtml"/>
+                            <b:dropMenu value='Dashboard'  icon-awesome='gamepad' iconAlign="right">                            
+                                <b:navLink value="01 Area"  href="#{request.contextPath}/faces/dashboard/grafico01.xhtml"/>                                
+                                <b:navLink value="02 Barras"  href="#{request.contextPath}/faces/dashboard/grafico02.xhtml"/>
+                                <b:navLink value="03 Burbujas"  href="#{request.contextPath}/faces/dashboard/grafico03.xhtml"/>
+                                <b:navLink value="04 Donas"  href="#{request.contextPath}/faces/dashboard/grafico04.xhtml"/>
+                                <b:navLink value="05 Lineas"  href="#{request.contextPath}/faces/dashboard/grafico05.xhtml"/>
+                                <b:navLink value="06 Pie"  href="#{request.contextPath}/faces/dashboard/grafico06.xhtml"/>
+                                <b:navLink value="07 Meter Gauge"  href="#{request.contextPath}/faces/dashboard/grafico07.xhtml"/>
+                                <b:navLink value="08 OHLC"  href="#{request.contextPath}/faces/dashboard/grafico08.xhtml"/>
+                                <b:navLink value="09 Animated"  href="#{request.contextPath}/faces/dashboard/grafico09.xhtml"/>
+                                <b:navLink value="10 Interactive"  href="#{request.contextPath}/faces/dashboard/grafico10.xhtml"/>
+                                <b:navLink value="11 Date"  href="#{request.contextPath}/faces/dashboard/grafico11.xhtml"/>
+                                <b:navLink value="12 Zoon"  href="#{request.contextPath}/faces/dashboard/grafico12.xhtml"/>
+                                <b:navLink value="13 Live"  href="#{request.contextPath}/faces/dashboard/grafico13.xhtml"/>
+                            </b:dropMenu>
                         </b:dropMenu>
                         <b:dropMenu value="Prospecto" icon-awesome="fa-group">
                             <b:navLink value="Registro" icon-awesome="fa-newspaper-o" href="#{request.contextPath}/faces/prospecto/registro.xhtml"/>
@@ -66,7 +80,7 @@
                     </b:navbarLinks>
                 </b:navBar> 
             </ui:insert>
-            
+
         </div>
 
         <div id="content" class="center_content">

@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Conexion;
 import model.Estudiante;
+import model.YearGender;
 
 /**
  *
@@ -25,6 +26,7 @@ public class EstudianteGestion {
     private static final String SQL_INSERTESTUDIANTE = "insert into estudiante(idEstudiante,nombre,apellido1,apellido2,fechaNaci,fechaIngr,genero) values (?,?,?,?,?,?,?)";
     private static final String SQL_UPDATEESTUDIANTE = "update  estudiante set nombre=?,apellido1=?,apellido2=?,fechaNaci=?,fechaIngr=?,genero=? where id=? and idEstudiante=?";
     private static final String SQL_DELETEESTUDIANTE = "Delete FROM estudiante where id=? and idEstudiante=?";
+    private static final String SQL_INGRESO_YEAR_GENDER = "SELECT YEAR(fechaIngr) as Fecha,genero,Count(*) total FROM estudiante group by  YEAR(fechaIngr),genero order by YEAR(fechaIngr)";
 
     //Metodo encargado de traer todos los estudiantes
     public static ArrayList<Estudiante> getEstudiantes() {
@@ -80,6 +82,27 @@ public class EstudianteGestion {
 
         }
         return estudiante;
+    }
+
+    //Metodo encargado de traer todos los estudiantes
+    public static ArrayList<YearGender> getIngresoYearGender() {
+        ArrayList<YearGender> list = new ArrayList<>();
+        try {
+            PreparedStatement sentencia = Conexion.getConexion().prepareStatement(SQL_INGRESO_YEAR_GENDER);
+            ResultSet rs = sentencia.executeQuery();
+            while (rs != null && rs.next()) {
+                list.add(new YearGender(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getInt(3)));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EstudianteGestion.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return list;
+
     }
 
     public static boolean insertEstudiante(Estudiante estudiante) {
