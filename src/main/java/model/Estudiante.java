@@ -99,5 +99,11 @@ public class Estudiante {
     public void setGenero(char genero) {
         this.genero = genero;
     }
+    
+    public String getNombreCompleto(){
+        String texto="";
+        
+        return texto;
+    }
 
 }

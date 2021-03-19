@@ -52,6 +52,38 @@ public class EstudianteController extends Estudiante implements Serializable {
             return "list.xhtml";
         }
     }
+    
+    private boolean noImprimir=true;
+
+    public boolean isNoImprimir() {
+        return noImprimir;
+    }
+
+    public void setNoImprimir(boolean noImprimir) {
+        this.noImprimir = noImprimir;
+    }
+    
+    
+     //Metodo encargado de mostrar un unico estudiante para editar
+    public void buscarEstudiante(String idEstudiante) {
+        Estudiante e = EstudianteGestion.buscarEstudiante(idEstudiante);
+        if (e != null) {
+            this.setId(e.getId());
+            this.setIdEstudiante(e.getIdEstudiante());
+            this.setNombre(e.getNombre());
+            this.setApellido1(e.getApellido1());
+            this.setApellido2(e.getApellido2());
+            this.setFechaNaci(e.getFechaNaci());
+            this.setFechaIngr(e.getFechaIngr());
+            this.setGenero(e.getGenero());
+           noImprimir=false;
+        } else {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                    "Posiblemente el registro no exista");
+            FacesContext.getCurrentInstance().addMessage("certificacionEstudianteForm:identificacion", msg);
+           noImprimir=true;
+        }
+    }
 
     public String insertEstudiante() {
         /*This== Estudiante*/
