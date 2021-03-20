@@ -30,7 +30,8 @@
                                     <b:commandButton value="Buscar"
                                                      icon="search"
                                                      look="success"
-                                                     action="#{estudianteController.buscarEstudiante(idEstudiante)}"                                                     
+                                                     onclick="ajax:estudianteController.buscarEstudiante(estudianteController.idEstudiante)"
+                                                     update="@form"                                                    
                                                      />
 
                                 </b:column>

@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class Conexion {
 
     private static Conexion conexion;
-    private static final String DBURL = "jdbc:mysql://localhost:3306/ugeneral?serverTimezone=UTC";
+    private static final String DBURL = "jdbc:mysql://localhost:3306/ugeneral?zeroDateTimeBehavior=CONVERT_TO_NULL";
     private static Connection conn = null;
 
     private Conexion() {
