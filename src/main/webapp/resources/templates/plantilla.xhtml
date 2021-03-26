@@ -25,8 +25,7 @@
                     </b:navbarLinks>
                     <b:navbarLinks>
                         <b:dropMenu value="Estudiantes" icon-awesome="fa-group" >
-                            <b:navLink value="Gestion" icon-awesome="fa-newspaper-o" href="#{request.contextPath}/faces/estudiante/list.xhtml"/>
-                            <b:navLink value="Certificacion" icon-awesome="fa-newspaper-o" href="#{request.contextPath}/faces/reportes/certificacion.xhtml"/>
+                            <b:navLink value="Gestion" icon-awesome="fa-newspaper-o" href="#{request.contextPath}/faces/estudiante/list.xhtml"/>                         
                             <b:dropMenu value='Dashboard'  icon-awesome='gamepad' iconAlign="right">                            
                                 <b:navLink value="01 Area"  href="#{request.contextPath}/faces/dashboard/grafico01.xhtml"/>                                
                                 <b:navLink value="02 Barras"  href="#{request.contextPath}/faces/dashboard/grafico02.xhtml"/>
@@ -47,6 +46,12 @@
                             <b:navLink value="Registro" icon-awesome="fa-newspaper-o" href="#{request.contextPath}/faces/prospecto/registro.xhtml"/>
                             <b:navLink value="Reporte" icon-awesome="fa-newspaper-o" href="#{request.contextPath}/faces/prospecto/reporte.xhtml"/>
                             <b:navLink value="JSON" icon-awesome="fa-newspaper-o" href="#{request.contextPath}/faces/prospecto/prospecto_json.xhtml"/>
+                        </b:dropMenu>
+                        <b:dropMenu value="Certificaciones" icon-awesome="fa-print">
+                            <b:navLink value="Certificacion" icon-awesome="fa-newspaper-o" href="#{request.contextPath}/faces/reportes/certificacion.xhtml"/>
+                        </b:dropMenu>
+                        <b:dropMenu value="Respaldos" icon-awesome="fa-save">
+                            <b:navLink value="Estudiante" icon-awesome="fa-newspaper-o" href="#{request.contextPath}/faces/respaldo/respaldo.xhtml"/>
                         </b:dropMenu>
                     </b:navbarLinks>
                     <b:navbarLinks pull="right" style-class="hidden-xs">

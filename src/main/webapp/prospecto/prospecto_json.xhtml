@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Prospecto Json</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../resources/templates/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form id="prospectoJsonForm">
+                    <b:container fluid="true">
+                        <b:panel look="primary" title="Prospecto">
+                            <b:row>
+                                <b:column medium-screen="1">
+                                    <h:outputLabel value="Cédula" for="cedula"/>                                    
+                                </b:column>
+                                <b:column medium-screen="2">
+                                    <b:inputText placeholder="101230123"
+                                                 required="true"
+                                                 mask="999999999"
+                                                 id="cedula"
+                                                 value="#{prospectoController.idProspecto}"/>
+                                </b:column>
+                                <b:column medium-screen="1" >
+                                    <b:commandButton value="Buscar"
+                                                     icon="search"
+                                                     look="success"
+                                                     onclick="ajax:prospectoController.recupera(prospectoController.idProspecto)" 
+                                                     update="@form" />                            
+                                </b:column>
+                                <b:column medium-screen="4" style-class="message">
+                                    <b:message for="cedula"/>                                    
+                                </b:column>
+                            </b:row>
+                        </b:panel> 
+                    </b:container>
+                    <b:container fluid="true">
+                        <b:panelGrid colSpans="6,6" size="sm">
+                            <b:panel title="Objeto prospecto" look="primary">
+                                <b:row>
+                                    <b:column medium-screen="3">
+                                        <h:outputText value="Nombre"/>
+                                    </b:column>
+                                    <b:column medium-screen="4">
+                                        <b:inputText placeholder="Nombre"
+                                                     id="nombre"
+                                                     value="#{prospectoController.nombre}"/>
+                                    </b:column>
+                                    <b:column small-screen="3">
+                                        <b:commandButton value="Pasar a Json"
+                                                         icon="pi pi-check"
+                                                         look="danger"
+                                                         onclick="ajax:prospectoController.creaJson()" 
+                                                         update="@form" />   
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column medium-screen="3">
+                                        <h:outputText value="Primer apellido"/>
+                                    </b:column>
+                                    <b:column medium-screen="4">
+                                        <b:inputText placeholder="Primer apellido"
+
+                                                     id="apellido1"
+                                                     value="#{prospectoController.apellido1}"/>
+                                    </b:column>                                   
+                                </b:row>
+                                <b:row>
+                                    <b:column medium-screen="3">
+                                        <h:outputText value="Segundo apellido"/>
+                                    </b:column>
+                                    <b:column medium-screen="4">
+                                        <b:inputText placeholder="Segundo apellido"
+
+                                                     id="apellido2"
+                                                     value="#{prospectoController.apellido2}"/>
+                                    </b:column>                                 
+                                </b:row>
+                                <b:row>
+                                    <b:column medium-screen="3">
+                                        <h:outputText value="Fecha de Nacimiento" />
+                                    </b:column>
+                                    <b:column medium-screen="4">
+                                        <b:datepicker id="fechaNaci"                                                  
+                                                      value="#{prospectoController.fechaNacimiento}"/>
+                                    </b:column>                                 
+                                </b:row>
+                                <b:row>
+                                    <b:column medium-screen="3">
+                                        <h:outputText value="Correo" />                                    
+                                    </b:column>
+                                    <b:column medium-screen="4">
+                                        <b:inputText placeholder="Correo@lacrost.com"                                                    
+                                                     id="correo"                                                 
+                                                     value="#{prospectoController.correo}"/>
+                                    </b:column>                                
+                                </b:row>
+                                <b:row>
+                                    <b:column medium-screen="3">
+                                        <h:outputText value="Celular"/>                                    
+                                    </b:column>
+                                    <b:column medium-screen="4">
+                                        <b:inputText placeholder="8888-9999"                                                     
+                                                     id="celular"
+                                                     value="#{prospectoController.celular}"/>
+                                    </b:column>
+                                </b:row>
+                            </b:panel>
+                            <b:panel title="Json" look="primary">
+                                <b:row> 
+                                    <b:column small-screen="2" >
+                                        <b:commandButton value="Pasar a Objeto"
+                                                         icon="pi pi-check"
+                                                         look="danger"
+                                                         onclick="ajax:prospectoController.crearObjetoProspecto()" 
+                                                         update="@form" />                            
+                                    </b:column>
+                                </b:row>
+                                <b:row> 
+                                    <b:column small-screen="12" >
+                                        <b:inputTextarea rows="9" value="#{prospectoController.tiraJson}"/>                     
+                                    </b:column>
+                                </b:row>
+                            </b:panel>                            
+                        </b:panelGrid>
+                    </b:container>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
